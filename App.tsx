@@ -11,7 +11,7 @@ import StaffMap from "./StaffMap";
 import { useLanguage } from "./LanguageContext";
 import Landing from "./Landing";
 import Navbar from "./Navbar";
-import { logoutUser } from "./src/services/firebaseService";
+import { logoutUser } from "./services/firebaseService";
 
 type Page = "landing" | "login" | "citizen" | "citizen_map" | "command" | "staff_map" | "community" | "livebin" | "tracktruck" | "admin_dashboard" | "map";
 type Role = "citizen" | "staff" | "admin";
