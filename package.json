@@ -1,0 +1,40 @@
+{
+    "name": "kachra-seth",
+    "version": "1.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "@react-google-maps/api": "^2.20.8",
+        "@tanstack/react-query": "^5.56.2",
+        "@tensorflow-models/coco-ssd": "^2.2.3",
+        "@tensorflow/tfjs": "^4.22.0",
+        "browser-image-compression": "^2.0.2",
+        "exifr": "^7.1.3",
+        "firebase": "^12.11.0",
+        "firebase-admin": "^13.7.0",
+        "framer-motion": "^12.38.0",
+        "leaflet": "^1.9.4",
+        "lucide-react": "^0.577.0",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "react-leaflet": "^4.2.1",
+        "recharts": "^3.8.0",
+        "socket.io-client": "^4.8.3"
+    },
+    "devDependencies": {
+        "@tailwindcss/vite": "^4.0.0",
+        "@types/leaflet": "^1.9.21",
+        "@types/node": "^25.5.0",
+        "@types/react": "^18.3.3",
+        "@types/react-dom": "^18.3.0",
+        "@vitejs/plugin-react": "^4.3.1",
+        "tailwindcss": "^4.0.0",
+        "tw-animate-css": "^1.0.0",
+        "typescript": "^5.5.3",
+        "vite": "^5.4.1"
+    }
+}

@@ -1,0 +1,56 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return signedIn() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return signedIn() && (
+        request.auth.token.admin == true ||
+        request.auth.token.role == 'admin'
+      );
+    }
+
+    match /users/{userId} {
+      allow read, write: if isOwner(userId) || isAdmin();
+    }
+
+    match /uploads/{uploadId} {
+      allow create: if signedIn();
+      allow read: if signedIn();
+      allow update, delete: if isAdmin();
+    }
+
+    match /reports/{reportId} {
+      allow create: if signedIn();
+      allow read: if signedIn();
+      allow update, delete: if isAdmin();
+    }
+
+    match /bins/{binId} {
+      allow read: if signedIn();
+      allow write: if isAdmin();
+    }
+
+    match /trucks/{truckId} {
+      allow read: if signedIn();
+      allow write: if isAdmin();
+    }
+
+    match /communityPosts/{postId} {
+      allow read: if signedIn();
+      allow create: if signedIn();
+      allow update, delete: if isAdmin();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

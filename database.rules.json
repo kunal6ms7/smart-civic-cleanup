@@ -1,0 +1,86 @@
+{
+    "rules": {
+        ".read": false,
+        ".write": false,
+
+        "users": {
+            "$userId": {
+                ".read": "auth != null && (auth.uid === $userId || auth.token.admin === true || auth.token.role === 'admin')",
+                ".write": "auth != null && auth.uid === $userId",
+                "createdAt": { ".validate": "newData.isString()" },
+                "updatedAt": { ".validate": "newData.isString()" },
+                "lastLoginAt": { ".validate": "!newData.exists() || newData.isString()" },
+                "$other": { ".validate": true }
+            }
+        },
+
+        "staff": {
+            "$staffId": {
+                ".read": "auth != null && (auth.uid === $staffId || auth.token.admin === true || auth.token.role === 'admin')",
+                ".write": "auth != null && (auth.uid === $staffId || auth.token.admin === true || auth.token.role === 'admin')",
+                "$other": { ".validate": true }
+            }
+        },
+
+        "admins": {
+            "$adminId": {
+                ".read": "auth != null && (auth.uid === $adminId || auth.token.admin === true || auth.token.role === 'admin')",
+                ".write": "auth != null && auth.token.admin === true",
+                "$other": { ".validate": true }
+            }
+        },
+
+        "bins": {
+            ".read": "auth != null",
+            "$binId": {
+                ".write": "auth != null && (auth.token.admin === true || auth.token.role === 'admin' || auth.token.role === 'staff')",
+                "$other": { ".validate": true }
+            }
+        },
+
+        "reports": {
+            ".read": "auth != null",
+            "$reportId": {
+                ".write": "auth != null",
+                "userId": {
+                    ".validate": "newData.isString() && (!data.exists() ? newData.val() === auth.uid : newData.val() === data.val())"
+                },
+                "createdAt": { ".validate": "!data.exists() && newData.isString()" },
+                "status": { ".validate": "newData.isString()" },
+                "$other": { ".validate": true }
+            }
+        },
+
+        "loginHistory": {
+            "$loginId": {
+                ".read": "auth != null && (data.child('userId').val() === auth.uid || auth.token.admin === true || auth.token.role === 'admin')",
+                ".write": "auth != null && newData.child('userId').val() === auth.uid",
+                "$other": { ".validate": true }
+            }
+        },
+
+        "userInputs": {
+            "$inputId": {
+                ".read": "auth != null && (data.child('userId').val() === auth.uid || auth.token.admin === true || auth.token.role === 'admin')",
+                ".write": "auth != null && newData.child('userId').val() === auth.uid",
+                "$other": { ".validate": true }
+            }
+        },
+
+        "trucks": {
+            ".read": "auth != null",
+            "$truckId": {
+                ".write": "auth != null && (auth.token.admin === true || auth.token.role === 'admin' || auth.token.role === 'staff')",
+                "$other": { ".validate": true }
+            }
+        },
+
+        "communityPosts": {
+            ".read": "auth != null",
+            "$postId": {
+                ".write": "auth != null",
+                "$other": { ".validate": true }
+            }
+        }
+    }
+}

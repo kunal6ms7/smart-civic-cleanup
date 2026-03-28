@@ -1,0 +1,125 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+:root {
+    /* Clean, Neon, Professional UI Variables */
+    --background: #0B1121;
+    --background-dark: #060913;
+    --foreground: #F8FAFC;
+    --foreground-secondary: #94A3B8;
+    --card: rgba(15, 23, 42, 0.7);
+    --card-foreground: #F8FAFC;
+    --primary: #38BDF8;
+    /* Light Neon Blue */
+    --primary-foreground: #020617;
+    --accent: #0EA5E9;
+    /* Civic Blue */
+    --accent-foreground: #FFFFFF;
+    --success: #10B981;
+    /* Neon Green */
+    --warning: #F59E0B;
+    /* Neon Amber */
+    --destructive: #EF4444;
+    /* Critical Neon Red */
+    --border: rgba(56, 189, 248, 0.2);
+    --border-dark: #1E293B;
+    --radius: 8px;
+    /* Standard card radius */
+    --radius-modal: 12px;
+    --radius-button: 4px;
+    /* Typography */
+    --app-font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --app-font-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --app-font-hindi: 'Noto Sans Devanagari', 'Inter', sans-serif;
+}
+
+@layer base {
+    * {
+        border-color: var(--border);
+    }
+    body {
+        font-family: var(--app-font-sans);
+        background-color: var(--background);
+        color: var(--foreground);
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: var(--app-font-display);
+        font-weight: 700;
+        letter-spacing: -0.025em;
+        color: var(--primary);
+    }
+}
+
+
+/* Hindi Typography Support Utility */
+
+.font-hindi {
+    font-family: var(--app-font-hindi);
+}
+
+
+/* Clean status dot */
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-dot.success {
+    background-color: var(--success);
+}
+
+.status-dot.warning {
+    background-color: var(--warning);
+}
+
+.status-dot.danger {
+    background-color: var(--destructive);
+}
+
+.pulse-dot {
+    animation: pulse-dot-clean 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-dot-clean {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: .5;
+    }
+}
+
+
+/* Custom Scrollbar for Content Areas */
+
+.custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--primary)) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: var(--radius);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.8);
+}
